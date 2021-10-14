@@ -1,0 +1,11 @@
+1. Crear componentes apra el crud de productos -- lista
+    listar
+    crear
+    editar
+    1.1 Crear menu de navegacion para mi crud
+
+2. Listar productos solicitadps al backend -- lista
+3. Eliminar productos -- lista
+4. Publicar productos al backend
+
+5. Editar productos
