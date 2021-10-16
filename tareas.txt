@@ -6,6 +6,6 @@
 
 2. Listar productos solicitadps al backend -- lista
 3. Eliminar productos -- lista
-4. Publicar productos al backend
+4. Publicar productos al backend -- lista
+5. Editar productos -- lista
 
-5. Editar productos
