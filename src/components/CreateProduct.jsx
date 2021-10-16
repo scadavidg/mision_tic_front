@@ -1,7 +1,8 @@
-import react, { useState } from 'react';
+import react, { useState, useEffect } from 'react';
 import { FormGroup, FormControl, InputLabel, Input, Button, makeStyles, Typography, RadioGroup, FormLabel, FormControlLabel, Radio } from '@material-ui/core';
 import { addProduct } from '../services/ProductService';
 import { useHistory } from 'react-router-dom';
+import { getCurrentUser } from '../services/AuthService';
 
 const initialValue = {
     valor: '',
@@ -11,8 +12,8 @@ const initialValue = {
 
 const useStyles = makeStyles({
     container: {
-        width: '50%',
-        margin: '5% 0 0 25%',
+        width: '30%',
+        margin: '100px auto 0 auto',
         '& > *': {
             marginTop: 20
         }
@@ -20,6 +21,12 @@ const useStyles = makeStyles({
 })
 
 export function CreateProduct() {
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        setUser(getCurrentUser());
+    }, [])
+
     const [product, setProduct] = useState(initialValue);
     const { valor, descripcion, estado } = product;
 
@@ -36,7 +43,7 @@ export function CreateProduct() {
 
     const addProductData = async () => {
         await addProduct(product);
-        history.push('/');
+        history.push('/productos');
     }
 
     return (

@@ -11,8 +11,8 @@ const initialValue = {
 
 const useStyles = makeStyles({
     container: {
-        width: '50%',
-        margin: '5% 0 0 25%',
+        width: '30%',
+        margin: '100px auto 0 auto',
         '& > *': {
             marginTop: 20
         }
@@ -46,7 +46,7 @@ export function EditProduct() {
 
     const updateProductData = async () => {
         await editProduct(product);
-        history.push('/');
+        history.push('/productos');
     }
 
     return (
@@ -73,7 +73,7 @@ export function EditProduct() {
                 </RadioGroup>
             </FormControl>
             <FormControl>
-                <Button variant="contained" onClick={(e) => updateProductData()} color="primary">Editar Producto</Button>
+                <Button variant="contained" onClick={() => updateProductData()} color="primary">Editar Producto</Button>
             </FormControl>
         </FormGroup>
     )
