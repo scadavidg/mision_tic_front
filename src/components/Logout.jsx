@@ -1,4 +1,0 @@
-const Logout = () => {
-    return null;
-};
-

@@ -9,3 +9,10 @@
 4. Publicar productos al backend -- lista
 5. Editar productos -- lista
 
+auth tareas
+1. construir un servicio asociado 
+a la autorizacion y autenticacion
+2. crear componente de login y registro e inyectario
+el servicio de auth
+3. restringir las rutas de mi aplicativo con el 
+servicio auth
