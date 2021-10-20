@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { AppBar, Toolbar, makeStyles, Button, Box, ListItemText, ListItemAvatar, ListItem, Avatar } from '@material-ui/core'
 import { NavLink } from 'react-router-dom';
 import { getCurrentUser } from '../services/AuthService';
-import { Person } from '@material-ui/icons';
 import { blue } from '@material-ui/core/colors';
 
 const useStyle = makeStyles({
