@@ -2,6 +2,9 @@
   "name": "products_front",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.19"
+  },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "axios": "^0.23.0",
