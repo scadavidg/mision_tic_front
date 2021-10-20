@@ -73,7 +73,7 @@ export function NavBar() {
                                 <ListItem>
                                     <ListItemAvatar>
                                         <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                                            <Person />
+                                            👤
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText primary={user.email} />
