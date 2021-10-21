@@ -10,8 +10,13 @@ import { Home } from "./components/Home";
 import { NotFound } from './components/NotFound';
 import { NavBar } from './components/NavBar';
 import { getCurrentUser } from './services/AuthService';
+//import { verifyToken } from './services/AuthService';
 
 export function App() {
+
+    /*setTimeout(() => {
+        verifyToken()
+    }, 80000);*/ 
 
     const [user, setUser] = useState([])
     useEffect(() => {

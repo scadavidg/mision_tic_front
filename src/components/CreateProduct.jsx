@@ -3,6 +3,7 @@ import { FormGroup, FormControl, InputLabel, Input, Button, makeStyles, Typograp
 import { addProduct } from '../services/ProductService';
 import { useHistory } from 'react-router-dom';
 import { getCurrentUser } from '../services/AuthService';
+import { verifyToken } from '../services/AuthService';
 
 const initialValue = {
     valor: '',
@@ -24,6 +25,7 @@ export function CreateProduct() {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
+        verifyToken();
         setUser(getCurrentUser());
     }, [])
 
