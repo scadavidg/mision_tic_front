@@ -49,9 +49,7 @@ export function NavBar() {
                     <Box sx={{ flexGrow: 1 }}>
                         <NavLink className={classes.tabs} to="/">Inicio</NavLink>
                         <NavLink className={classes.tabs} to="/productos">Productos</NavLink>
-                        {user && (
-                            <NavLink className={classes.tabs} to="/ventas">Ventas</NavLink>
-                        )}
+                        <NavLink className={classes.tabs} to="/ventas">Ventas</NavLink>
                     </Box>
                     {!user && (
                         <>

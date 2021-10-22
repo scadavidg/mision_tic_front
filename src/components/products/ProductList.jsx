@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Table, TableHead, TableCell, TableRow, TableBody, Button, makeStyles } from '@material-ui/core';
-import { getProducts, deleteProduct } from '../services/ProductService';
+import { getProducts, deleteProduct } from '../../services/ProductService';
 import { Link } from 'react-router-dom';
-import { getCurrentUser } from '../services/AuthService';
+import { getCurrentUser } from '../../services/AuthService';
 
 const useStyles = makeStyles({
     table: {
@@ -42,12 +42,11 @@ export function ProductList() {
 
     const getAllProducts = async () => {
         let response = await getProducts();
-        console.log(response);
         setProducts(response.data.data);
     }
 
     const deleteProductData = async (id) => {
-        let callbackUser = window.confirm('Esta seguro de elimar el prudcto');
+        let callbackUser = window.confirm('Esta seguro de eliminar el prudcto');
         if (callbackUser) {
             await deleteProduct(id);
             getAllProducts();
