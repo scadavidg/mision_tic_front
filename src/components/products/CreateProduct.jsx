@@ -1,8 +1,8 @@
 import react, { useState, useEffect } from 'react';
 import { FormGroup, FormControl, InputLabel, Input, Button, makeStyles, Typography, RadioGroup, FormLabel, FormControlLabel, Radio } from '@material-ui/core';
-import { editProduct, getProduct } from '../services/ProductService';
-import { useHistory, useParams } from 'react-router-dom';
-import { verifyToken } from '../services/AuthService'
+import { addProduct } from '../../services/ProductService';
+import { useHistory } from 'react-router-dom';
+import { getCurrentUser, verifyToken } from '../../services/AuthService';
 
 const initialValue = {
     valor: '',
@@ -20,24 +20,19 @@ const useStyles = makeStyles({
     }
 })
 
-export function EditProduct() {
-    const [product, setProduct] = useState(initialValue);
-    const { valor, descripcion, estado } = product;
-    const classes = useStyles();
-    let history = useHistory();
-
-    const { id } = useParams();
+export function CreateProduct() {
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
         verifyToken();
-        loadProductData();
+        setUser(getCurrentUser());
     }, [])
 
-    const loadProductData = async () => {
-        let response = await getProduct(id);
-        console.log(response)
-        setProduct(response.data.data);
-    }
+    const [product, setProduct] = useState(initialValue);
+    const { valor, descripcion, estado } = product;
+
+    const classes = useStyles();
+    let history = useHistory();
 
     const onValueChange = (e) => {
         setProduct({ ...product, [e.target.name]: e.target.value });
@@ -47,14 +42,14 @@ export function EditProduct() {
         setProduct({ ...product, "estado": state });
     }
 
-    const updateProductData = async () => {
-        await editProduct(product);
+    const addProductData = async () => {
+        await addProduct(product);
         history.push('/productos');
     }
 
     return (
         <FormGroup className={classes.container}>
-            <Typography variant="h4">Editar Producto</Typography>
+            <Typography variant="h4">Agregar Producto</Typography>
             <FormControl>
                 <InputLabel htmlFor="my-input">Descripción</InputLabel>
                 <Input onChange={(e) => onValueChange(e)} name="descripcion" value={descripcion} id="my-input" />
@@ -76,7 +71,7 @@ export function EditProduct() {
                 </RadioGroup>
             </FormControl>
             <FormControl>
-                <Button variant="contained" onClick={() => updateProductData()} color="primary">Editar Producto</Button>
+                <Button variant="contained" onClick={(e) => addProductData()} color="primary">Agregar Producto</Button>
             </FormControl>
         </FormGroup>
     )
