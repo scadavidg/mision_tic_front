@@ -8,6 +8,7 @@ import { EditProduct } from './components/products/EditProduct';
 import { SalesList } from './components/sales/SalesList';
 import { SaleDetail } from './components/sales/SaleDetail';
 import { CreateSale } from './components/sales/CreateSale';
+import { EditSale } from './components/sales/EditSale'
 
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
@@ -42,7 +43,7 @@ export function App() {
                         <Route exact path="/productos/agregar" component={CreateProduct} />
                         <Route exact path="/productos/editar/:id" component={EditProduct} />
                         <Route exact path="/ventas/agregar" component={CreateSale} />
-                        
+                        <Route exact path="/ventas/editar/:id" component={EditSale} />
                     </>
                 )}
                 <Route exact path="/login" component={Login} />

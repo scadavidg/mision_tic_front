@@ -35,7 +35,6 @@ export function EditProduct() {
 
     const loadProductData = async () => {
         let response = await getProduct(id);
-        console.log(response)
         setProduct(response.data.data);
     }
 

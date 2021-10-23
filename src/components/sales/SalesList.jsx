@@ -83,7 +83,7 @@ export function SalesList() {
 
                                     (<TableCell>
                                         <Button className={classes.button} variant="contained" component={Link} to={`ventas/detalle/${sale._id}`} color="primary">Detalle</Button>
-                                        <Button className={classes.button} variant="contained" component={Link} to={`productos/editar/${sale._id}`} color="info">Editar</Button>
+                                        <Button className={classes.button} variant="contained" component={Link} to={`ventas/editar/${sale._id}`} color="info">Editar</Button>
                                         <Button variant="contained" color="secondary" onClick={() => deleteSaleData(sale._id)} >Eliminar</Button>
                                     </TableCell>)
                                 }
