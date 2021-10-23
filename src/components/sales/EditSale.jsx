@@ -1,8 +1,8 @@
 import react, { useState, useEffect } from 'react';
 import { FormGroup, Select, MenuItem, Table, TableHead, TableCell, TableRow, TableBody, FormControl, DesktopDatePicker, InputLabel, Input, Button, makeStyles, Typography, RadioGroup, FormLabel, FormControlLabel, Radio } from '@material-ui/core';
-import { addSale } from '../../services/SalesService';
+import { editSale, getSale } from '../../services/SalesService';
 import { getProducts } from '../../services/ProductService';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { getCurrentUser, verifyToken } from '../../services/AuthService';
 
 
@@ -54,10 +54,13 @@ const useStyles = makeStyles({
     }
 })
 
-export function CreateSale() {
+
+export function EditSale() {
     const classes = useStyles();
     const history = useHistory();
     const [user, setUser] = useState(null)
+
+    const { id } = useParams();
 
     useEffect(() => {
         setUser(getCurrentUser());
@@ -72,6 +75,20 @@ export function CreateSale() {
 
     const { productos, fecha, valor, nombreCliente, idCliente, idVendedor } = sale;
 
+    const loadSaleData = async () => {
+        let response = await getSale(id);
+        response.data.data.productos.forEach(element => {
+            element.descripcion = products.find(item => item._id === element._id).descripcion
+        });
+        setSale(response.data.data);
+    }
+
+    const loadProductsData = async () => {
+        let response = await getProducts();
+        setProducts(response.data.data);
+        loadSaleData();
+    }
+
     const onValueChange = (e) => {
         setSale({ ...sale, [e.target.name]: e.target.value });
     }
@@ -84,14 +101,9 @@ export function CreateSale() {
             setNewProduct(newProductCopy);
         }
         setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
-
-
     }
 
-    const loadProductsData = async () => {
-        let response = await getProducts();
-        setProducts(response.data.data);
-    }
+    
 
     const addProduct = (newProduct) => {
         let productsCopy = productos
@@ -101,8 +113,8 @@ export function CreateSale() {
         changeStateCreateProductForm('minimizado');
     }
 
-    const addSaleData = async () => {
-        let response = await addSale(sale);
+    const editSaleData = async () => {
+        let response = await editSale(sale);
         if (response.status === 201) {
             history.push('/ventas');
         }
@@ -121,7 +133,11 @@ export function CreateSale() {
     return (
         <>
             <FormGroup className={classes.container}>
-                <Typography variant="h4">Agregar Venta</Typography>
+                <Typography variant="h4">Editar Venta</Typography>
+                <FormControl>
+                    <InputLabel htmlFor="my-input">Id</InputLabel>
+                    <Input  type="text" readOnly disabled  value={id} id="my-input" />
+                </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="my-input">Valor</InputLabel>
                     <Input onChange={(e) => onValueChange(e)} type="number" name="valor" value={valor} id="my-input" />
@@ -224,7 +240,7 @@ export function CreateSale() {
                     </TableBody>
                 </Table>
                 <FormControl>
-                    <Button variant="contained" onClick={(e) => addSaleData()} color="primary">Agregar Venta</Button>
+                    <Button variant="contained" onClick={() => editSaleData()} color="primary">Editar Venta</Button>
                 </FormControl>
             </FormGroup>
         </>

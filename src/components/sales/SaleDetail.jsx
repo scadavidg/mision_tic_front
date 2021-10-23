@@ -58,7 +58,6 @@ export function SaleDetail() {
 
     const loadSaleData = async (id) => {
         let response = await getSale(id);
-        console.log(response);
         setSale(response.data.data);
     }
     
@@ -82,7 +81,7 @@ export function SaleDetail() {
                         <TableCell>Id Vendedor: {sale.idVendedor}</TableCell>
                         {user && (
                             <TableCell className={classes.button_add}>
-                                <Button className={classes.button} variant="contained" color="primary" component={Link} to="productos/agregar" >Editar</Button>
+                                <Button className={classes.button} variant="contained" component={Link} to={`ventas/editar/${sale._id}`} color="info">Editar</Button>
                                 <Button variant="contained" color="secondary" onClick={() => deleteSaleData(sale._id)} >Eliminar</Button>
                             </TableCell>
                         )}
